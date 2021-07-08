@@ -33,6 +33,7 @@ const buildToolProvider: string = (core.getInput('buildToolProvider') || 'Spigot
 let versions: string[] = fixArgArr((core.getInput('versions') || 'latest').toLowerCase().split(','));
 const generateSrc: boolean = core.getInput('generateSrc') == 'true';
 const generateDoc: boolean = core.getInput('generateDoc') == 'true';
+const remapped: string = (core.getInput("remapped") || '');
 const disableJavaCheck: boolean = core.getInput('disableJavaCheck') == 'true';
 
 const forceRun: boolean = core.getInput('forceRun') == 'true';
@@ -104,6 +105,11 @@ async function run(): Promise<{ code: number, msg?: string }> {
 
             if (disableJavaCheck) {
                 buildToolsArgs.push('--disable-java-check');
+            }
+            
+            if (remapped) {
+                buildToolsArgs.push("--remapped");
+                buildToolsArgs.push(remapped);
             }
 
             const tasks = [];
