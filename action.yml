@@ -35,6 +35,10 @@ inputs:
     required: false
     default: SpigotMC
     description: Whose BuildTool should be used? (SpigotMC [default], SpraxDev)
+  remapped:
+    required: false
+    default: ''
+    description: What the spigot jar should be remapped to. (remapped-mojang, or remapped-obf)
 
 runs:
   using: node12
